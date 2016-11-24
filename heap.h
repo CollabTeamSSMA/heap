@@ -9,6 +9,8 @@ using namespace std;
 //template is there is time
 class heap{
  private:
+  void remove_max_helper(int index);
+  void insert_helper(int index);
   vector<int> buffer;
  public:
   heap();
