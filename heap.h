@@ -2,7 +2,6 @@
 #define HEAP_H
 
 #include <vector>
-//#include <typeinfo>
 #include <iostream>
 using namespace std;
 
@@ -25,8 +24,6 @@ class heap{
 
 template <class T>
 heap<T>::heap(){
-  //T position_zero = NULL;
-  //buffer.push_back(position_zero);
   buffer.resize(1);
 }
 
@@ -73,29 +70,31 @@ void heap<T>::remove_max(){
 
 template <class T>
 void heap<T>::remove_max_helper(unsigned index){
-  if(buffer[index] < buffer[index*2] && index*2+1 >= buffer.size()-1){
-    swap(buffer[index], buffer[index*2]);
+  unsigned right = index*2+1;
+  unsigned left = index*2;
+  if(buffer[index] < buffer[left] && right >= buffer.size()-1){
+    swap(buffer[index], buffer[left]);
   }
 	 
-    if(buffer[index] < buffer[index*2] && buffer[index] < buffer[(index*2)+1]){
-      if(buffer[(index*2)+1] < buffer[index*2] && (index*2) < buffer.size()){
-    	swap(buffer[index], buffer[index*2]);
+    if(buffer[index] < buffer[left] && buffer[index] < buffer[right]){
+      if(buffer[right] < buffer[left] && left < buffer.size()){
+    	swap(buffer[index], buffer[left]);
     	remove_max_helper(index+1);
 	insert_helper(index);
       }
-      else if(buffer[(index*2)+1] >= buffer[index*2] && (index*2)+1 < buffer.size()){
-    	swap(buffer[index], buffer[(index*2)+1]);
+      else if(buffer[left] >= buffer[left] && right < buffer.size()){
+    	swap(buffer[index], buffer[right]);
     	remove_max_helper(index+1);
 	insert_helper(index);
       }
     }
-    else if (buffer[index] < buffer[index*2] && (index*2) < buffer.size() && buffer[index*2+1] <= buffer[
-      swap(buffer[index], buffer[index*2]);
+    else if (buffer[index] < buffer[left] && left < buffer.size() && buffer[right] <= buffer[index]){
+      swap(buffer[index], buffer[left]);
       remove_max_helper(index+1);
       insert_helper(index);
     } 
-    else if(buffer[index] < buffer[(index*2)+1] && (index*2)+1 < buffer.size()  && buffer[index*2] <= buffer[index]){
-      swap(buffer[index], buffer[(index*2)+1]);
+    else if(buffer[index] < buffer[right] && right < buffer.size()  && buffer[left] <= buffer[index]){
+      swap(buffer[index], buffer[right]);
       remove_max_helper(index+1);
       insert_helper(index);
     }
