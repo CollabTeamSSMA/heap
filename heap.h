@@ -79,31 +79,26 @@ void heap<T>::remove_max_helper(unsigned index){
 	 
     if(buffer[index] < buffer[index*2] && buffer[index] < buffer[(index*2)+1]){
       if(buffer[(index*2)+1] < buffer[index*2] && (index*2) < buffer.size()){
-    	cout << buffer[index] << " swap with " << buffer[index*2];
     	swap(buffer[index], buffer[index*2]);
     	remove_max_helper(index+1);
 	insert_helper(index);
       }
       else if(buffer[(index*2)+1] >= buffer[index*2] && (index*2)+1 < buffer.size()){
-    	cout << buffer[index] << " swap with " << buffer[index*2+1] << endl;
     	swap(buffer[index], buffer[(index*2)+1]);
     	remove_max_helper(index+1);
 	insert_helper(index);
       }
     }
-    else if (buffer[index] < buffer[index*2] && (index*2) < buffer.size() && buffer[index*2+1] <= buffer[index]){
-      cout << buffer[index] << " swap with " << buffer[index*2] << endl;
+    else if (buffer[index] < buffer[index*2] && (index*2) < buffer.size() && buffer[index*2+1] <= buffer[
       swap(buffer[index], buffer[index*2]);
       remove_max_helper(index+1);
       insert_helper(index);
     } 
     else if(buffer[index] < buffer[(index*2)+1] && (index*2)+1 < buffer.size()  && buffer[index*2] <= buffer[index]){
-      cout << buffer[index] << " swap with " << buffer[index*2+1] << endl;
       swap(buffer[index], buffer[(index*2)+1]);
       remove_max_helper(index+1);
       insert_helper(index);
     }
-    
 }
 
 template <class T>
