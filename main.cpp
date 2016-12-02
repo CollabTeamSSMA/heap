@@ -65,10 +65,9 @@ void print_type_query(){
   cout << "\n|<<Enter the type you want>>|"
        << endl << "|";
     for(int i = 0; i<27; i++)//empty line
-    cout << " ";
+      cout << " ";
   //options
-    cout 
-	 << "|\n|<<(1)->string>>>>>>>>>>>>>>|"
+    cout << "|\n|<<(1)->string>>>>>>>>>>>>>>|"
 	 << "\n|<<(2)->int>>>>>>>>>>>>>>>>>|"
 	 << "\n|<<(3)->float>>>>>>>>>>>>>>>|"
 	 << "\n|<<(4)->char>>>>>>>>>>>>>>>>|"
