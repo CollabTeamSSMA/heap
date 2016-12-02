@@ -3,12 +3,14 @@
 
 #include <vector>
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 template <class T>
 class heap{
  private:
   void remove_max_helper(unsigned index);
+  int print_helper(unsigned index, int number_of_leaves);
   void insert_helper(unsigned index);
   vector<T> buffer;
  public:
@@ -51,19 +53,40 @@ void heap<T>::insert_helper(unsigned index){
 
 template <class T>
 void heap<T>::print(){
-  for(unsigned i = 1; i < buffer.size(); i++)
-    cout << buffer[i] << " ";
-  cout << endl;
+  if (buffer.size() != 1){
+    int space_subtract = 2;
+    int spaces = 41;
+    unsigned power = 2;
+    cout << setfill(' ') << setw(spaces) << "|" << buffer[1]<< "|" << endl;
+    unsigned i = 2;
+    spaces-=space_subtract;
+    while ( i < buffer.size()){
+      cout << setfill(' ')  << setw(spaces);
+      for(unsigned j = 0; j < power; j++){
+	if(i < buffer.size()){
+	  cout <<  "|" << buffer[i] << "| ";
+	  space_subtract++;
+	}
+	i++;
+      }
+      spaces-=space_subtract;
+      power*=2;
+      cout << endl;
+    }
+  }
 }
-template <typename T>
+
+template <class T>
 T heap<T>::max(){
   return buffer[1];
 }
 
 template <class T>
 void heap<T>::remove_max(){
-  swap(buffer[1], buffer[buffer.size()-1]);
-  buffer.pop_back();
+  if (size() >0){
+    swap(buffer[1], buffer[buffer.size()-1]);
+    buffer.pop_back();
+  }
   if(buffer.size() > 2)
     remove_max_helper(1);
 }
@@ -82,7 +105,7 @@ void heap<T>::remove_max_helper(unsigned index){
     	remove_max_helper(index+1);
 	insert_helper(index);
       }
-      else if(buffer[left] >= buffer[left] && right < buffer.size()){
+      else if(buffer[right] >= buffer[left] && right < buffer.size()){
     	swap(buffer[index], buffer[right]);
     	remove_max_helper(index+1);
 	insert_helper(index);
