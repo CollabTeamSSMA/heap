@@ -5,7 +5,6 @@
  *
  */
 #include "heap.h"
-#include <cstdlib>
 using namespace std;
 
 void print_welcome();
@@ -66,7 +65,7 @@ void print_type_query(){
     for(int i = 0; i<28; i++)//empty line
     cout << " ";
   //options
-    cout << "|\n|<<Enter the type you want>>|" 
+    cout << "\n|<<Enter the type you want>>|" 
 	 << "\n|<<(1)->string>>>>>>>>>>>>>>|"
 	 << "\n|<<(2)->int>>>>>>>>>>>>>>>>>|"
 	 << "\n|<<(3)->float>>>>>>>>>>>>>>>|"
