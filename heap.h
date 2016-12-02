@@ -93,12 +93,12 @@ void heap<T>::remove_max(){
 
 template <class T>
 void heap<T>::remove_max_helper(unsigned index){
-  unsigned right = index*2+1;
-  unsigned left = index*2;
-  if(buffer[index] < buffer[left] && right >= buffer.size()-1){
-    swap(buffer[index], buffer[left]);
-  }
-	 
+  if (index < buffer.size()){
+    unsigned right = index*2+1;
+    unsigned left = index*2;
+    if(buffer[index] < buffer[left] && right >= buffer.size()-1){
+      swap(buffer[index], buffer[left]);
+    }
     if(buffer[index] < buffer[left] && buffer[index] < buffer[right]){
       if(buffer[right] < buffer[left] && left < buffer.size()){
     	swap(buffer[index], buffer[left]);
@@ -121,6 +121,7 @@ void heap<T>::remove_max_helper(unsigned index){
       remove_max_helper(index+1);
       insert_helper(index);
     }
+  }
 }
 
 template <class T>
