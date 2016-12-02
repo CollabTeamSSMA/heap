@@ -62,11 +62,13 @@ void print_welcome(){
 void print_type_query(){
   for (int i = 0; i<29; i++)
     cout << "-";//top of the box
-    for(int i = 0; i<28; i++)//empty line
+  cout << "\n|<<Enter the type you want>>|"
+       << endl << "|";
+    for(int i = 0; i<27; i++)//empty line
     cout << " ";
   //options
-    cout << "\n|<<Enter the type you want>>|" 
-	 << "\n|<<(1)->string>>>>>>>>>>>>>>|"
+    cout 
+	 << "|\n|<<(1)->string>>>>>>>>>>>>>>|"
 	 << "\n|<<(2)->int>>>>>>>>>>>>>>>>>|"
 	 << "\n|<<(3)->float>>>>>>>>>>>>>>>|"
 	 << "\n|<<(4)->char>>>>>>>>>>>>>>>>|"
@@ -81,7 +83,7 @@ void driver(T value, heap<T> h){
   print_welcome();//welcome screen
   cin >> answer;//priming read
   while(answer != 'q'){
-    if (answer == '1'){//inserts a given valueand data
+    if (answer == '1'){//inserts a given value and data
       cout << "Please enter the value you would like to insert: ";
       cin >> value;
       h.insert(value);
