@@ -95,7 +95,7 @@ void heap::remove_max_helper(unsigned index){
     //   remove_max_helper(index+1);
     // }
     
-}
+} 
 void heap::swap(int &First_num, int &Second_num){
   int temp = First_num;
   First_num = Second_num;
